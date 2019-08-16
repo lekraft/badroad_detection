@@ -29,8 +29,10 @@ A step by step series of examples that tell you how to get it running
 ### 1. Step - Wiring
 Wire everything (as you see above and below) and then update
 
-[Wiring MPU6050](GY-521_accelerometer_Gyroscope_Steckplatine-524x500.png)
+![Wiring MPU6050](GY-521_accelerometer_Gyroscope_Steckplatine-524x500.png)
+
 More information about the [MPU6050](https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/)
+
 ```
 sudo apt-get update
 ```
