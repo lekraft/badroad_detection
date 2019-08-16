@@ -27,17 +27,21 @@ PICTURE of wiring
 A step by step series of examples that tell you how to get it running
 
 ### 1. Step - Wiring
-Wire everything (as you see above) and then update
+Wire everything (as you see above and below) and then update
 
+[Wiring MPU6050](GY-521_accelerometer_Gyroscope_Steckplatine-524x500.png)
+More information about the [MPU6050](https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/)
 ```
 sudo apt-get update
 ```
+
 
 
 ### 2. Step - GPS
 Now install everything which is necessary for the GPS module.
 
 Got this tutorial from here: [How can I set up my G-Mouse USB GPS for use with Raspbian?](https://raspberrypi.stackexchange.com/questions/68816/how-can-i-set-up-my-g-mouse-usb-gps-for-use-with-raspbian)
+
 First thing is to make sure the tty port is set to the correct baud rate without Putty involved:
 ```
 stty speed 9600 /dev/ttyACM0
