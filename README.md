@@ -64,7 +64,7 @@ Now run the basic test program to verify gpsd is working
 cgps -s
 ```
 
-PICTURE of Logging
+![Logging](EL8Ev.png)
 
 ---> Actually, the first time I ran this I did not get any data. So I had to do this to jump-start it:
 ```
