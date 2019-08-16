@@ -29,7 +29,7 @@ A step by step series of examples that tell you how to get it running
 ### 1. Step - Wiring
 Wire everything (as you see above and below) and then update
 
-![Wiring MPU6050](GY-521_accelerometer_Gyroscope_Steckplatine-524x500.png)
+![Wiring MPU6050](pictures/GY-521_accelerometer_Gyroscope_Steckplatine-524x500.png)
 
 More information about the [MPU6050](https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/)
 
@@ -64,7 +64,7 @@ Now run the basic test program to verify gpsd is working
 cgps -s
 ```
 
-![Logging](EL8Ev.png)
+![Logging](pictures/EL8Ev.png)
 
 ---> Actually, the first time I ran this I did not get any data. So I had to do this to jump-start it:
 ```
@@ -103,6 +103,7 @@ python main.py
 Now drive around and log the data. The data will be stored in a JSON file in the folder.
 
 Tableau is a good tool to visualize the data if this is needed.
+
 PICTURE TABLEAU
 
 ## Further work
