@@ -1,9 +1,10 @@
-import json
-import serial
-import pynmea2
-import mpu6050 as gyro
-import time
 from gps3 import gps3
+import json
+import mpu6050 as mpu6050
+import time
+from time import gmtime, strftime
+
+print("started")
 
 #initialise Json Dict
 data = {}
@@ -12,49 +13,42 @@ data['gps'] = []
 global counter
 counter = 0
 
-def logger(str, counter):
-    if str.find('GGA') > 0:
-        msg = pynmea2.parse(str)
-        print("start logging")
-        #reading g force from the gyro sensor
- #       force = gyro.mpu9250.get_accel_data_each()[z]
-
-        #append data
-        data['gps'].append({
-            'counter': counter,
-            'timestamp': msg.timestamp,
-            'latitude': msg.lat,
-            'longitude': msg.lon,
-#            'force': force
-        })
-        print ("Counter: %s -- Timestamp: %s -- Lat: %s  -- Lon: %s  -- Altitude: %s  -- G Force: %s" % (counter,msg.timestamp,msg.lat,msg.lon,force))
-        counter +=1
-        
-    else:
-        print("problem")
-
-
-print("Starting")
-
-#initialise GPS Sensor
-#serialPort = serial.Serial("/dev/ttyAMA0", 9600, timeout=0.5)
-#time.sleep(10)
+#initialize GPS and MPU
 gps_socket = gps3.GPSDSocket()
 data_stream = gps3.DataStream()
 gps_socket.connect()
 gps_socket.watch()
 
-print("initialized")
+sensor = mpu6050.mpu6050(0x68)
 
-#main function which starts gps and g force logging and save the data to a Json file.
-while True:
+time.sleep(6)
+print("initializied")
 
-    str = serialPort.readline()
-    print("start gps")
-    logger(str,counter)
+#run logging
+for new_data in gps_socket:
+    if new_data:
 
-    counter += 1
+        #get GPS data
+        data_stream.unpack(new_data)
 
-    #write Json
-    with open('data.txt', 'w') as outfile:
-        json.dump(data, outfile)
+        #get MPU data
+        forcedata = sensor.get_accel_data_each()[2]
+
+        time = strftime("%Y-%m-%d %H:%M:%S")
+        data['gps'].append({
+            'counter': counter,
+            'timestamp': time,
+            'latitude': data_stream.TPV['lat'],
+            'longitude': data_stream.TPV['lon'],
+            'force': forcedata
+        })
+
+        print ("Counter: %s -- Timestamp: %s -- Lat: %s  -- Lon: %s  -- Force: %s" % (counter,time,data_stream.TPV['lat'],data_stream.TPV['lon'],forcedata))
+        counter +=1
+
+        #write Json
+        with open('data.txt', 'w') as outfile:
+            json.dump(data, outfile)
+
+
+        
