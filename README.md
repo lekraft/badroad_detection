@@ -108,7 +108,11 @@ Due to this process the JSON file will not be written perfectly. Because of this
 2. Add a ] and a } to the end to close the JSON file.
 3. Change file type from .txt to .json
 
+### 6. Analysis
 Tableau is a good tool to visualize the data if this is needed.
+My Workbench is on [Tableau Public](https://www.invensense.com/products/motion-tracking/6-axis/mpu-6050/), if you are interested you can download the file.
+
+I visualized the points where the acceleration on the x Axis is more than 10 m/s2 (a bit over average 9,81m/s2 in germany)
 
 ![Tableau](pictures/tableau_screenshot.png)
 
